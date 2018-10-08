@@ -26,6 +26,10 @@ Flask-RESTful-example
 
 ```bash
 docker-compose up -d
+pip3 install pipenv
+pipenv shell
+pipenv run pip install pip==18.0
+pipenv install
 python run.py
 ```
 
