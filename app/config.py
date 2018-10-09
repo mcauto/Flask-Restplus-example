@@ -25,7 +25,7 @@ class Config:
     MYSQL_DATABASE_PASSWORD='userpassword'
     MYSQL_DATABASE_NAME='database'
     MYSQL_DATABASE_HOST='localhost'
-    MYSQL_PORT=os.getenv('MYSQL_PORT','23306')
+    MYSQL_PORT=os.getenv('MYSQL_PORT','33306')
 
     SQLALCHEMY_ECHO = True
     SQLALCHEMY_TRACK_MODIFICATIONS = True

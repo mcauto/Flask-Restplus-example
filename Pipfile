@@ -8,6 +8,8 @@ name = "pypi"
 [packages]
 pytest = "*"
 pytest-cov="*"
+marshmallow="*"
+marshmallow-jsonapi = "*"
 flask-restful = "*"
 flask-sqlalchemy = "*"
 flask-migrate = "*"

@@ -1,8 +1,9 @@
 import os
 from flask import Flask, current_app, send_file
-from app.api import api_blueprint
+from app.api import books_api
 
 from logging.config import dictConfig
+from app.books.models import db
 from app.config import Config
 import logging
 
@@ -30,8 +31,11 @@ def create_app(config_filename):
     
     app = Flask(__name__)
     app.config.from_object(config_filename)
-    #db.init_app(app)
-    app.register_blueprint(api_blueprint)
+    db.init_app(app)
+    
+    app.register_blueprint(books_api, url_prefix='/api/books')
+
+
     app.logger.info('>>> {}'.format(Config.FLASK_ENV))
     return app
 

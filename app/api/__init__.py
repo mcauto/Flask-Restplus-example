@@ -1,9 +1,8 @@
-from flask import Flask, Blueprint
+from app.books.views import books_api
+from app.books.views import BookItem
+from app.books.views import BooksList
 from flask_restful import Api
 
-from app.books.views import BookItem
-
-api_blueprint = Blueprint('books', "Book's API")
-api = Api(api_blueprint)
-api.add_resource(BookItem, '/books/<int:book_id>')
-
+api = Api(books_api)
+api.add_resource(BookItem, '/<int:book_id>')
+api.add_resource(BooksList, '/')
