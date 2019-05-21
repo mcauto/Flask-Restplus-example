@@ -37,6 +37,5 @@ def create_app(config_name):
                 'handlers': ['file_handler', 'console']
             }
         })
-
     app.logger.info('>>> {}'.format(config_name))
     return app
