@@ -1,8 +1,24 @@
-from app.books.views import books_api
-from app.books.views import BookItem
-from app.books.views import BooksList
-from flask_restful import Api
+from flask import Blueprint
+from flask_restplus import Api
 
-api = Api(books_api)
-api.add_resource(BookItem, '/<int:book_id>')
-api.add_resource(BooksList, '/')
+from .resources.todo import api as todo_api
+
+# https://flask-restplus.readthedocs.io/en/stable/swagger.html#documenting-authorizations
+authorizations = {
+    'apikey': {
+        'type': 'apiKey',
+        'in': 'header',
+        'name': 'X-API-KEY'
+    }
+}
+blueprint = Blueprint('api', __name__, 
+						  url_prefix='/api')
+rest_api = Api(blueprint, 
+                doc='/doc',
+                security=['apikey'], 
+                authorizations=authorizations,
+                title='Flask RESTPlus API',
+                version='1.0',
+                description='flask RESTPlus API')
+
+rest_api.add_namespace(todo_api, '/todo')

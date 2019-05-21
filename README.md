@@ -4,22 +4,49 @@
 
 ```bash
 Flask-RESTful-example
-├── Pipfile 
+├── Pipfile
+├── Pipfile.lock
 ├── README.md
 ├── app
 │   ├── __init__.py
-│   ├── api 
+│   ├── api│   │   ├── README.md
 │   │   ├── __init__.py
-│   │   └── database.py # SQLAlchemey
-│   ├── books # API model example (such as Model)
+│   │   ├── resources
+│   │   │   ├── README.md
+│   │   │   └── todo.py
+│   │   └── rpc
+│   │       ├── README.md
+│   │       └── __init__.py
+│   ├── config.py
+│   ├── constants.py
+│   ├── database
+│   │   ├── README.md
+│   │   └── __init__.py
+│   ├── log
+│   │   ├── README.md
+│   │   └── app.log
+│   ├── models
+│   │   ├── README.md
 │   │   ├── __init__.py
-│   │   ├── models.py # SQLAlchemy ORM 
-│   │   └── views.py # Flask Resource (such as Controller)
-│   ├── config.py # app config
-│   └── log # log folder
+│   │   └── todo.py
+│   └── tests
+│       ├── README.md
+│       ├── __init__.py
+│       └── test_.py
+├── confs
+│   ├── README.md
+│   ├── database
+│   │   ├── README.md
+│   │   └── mysql
+│   └── manager
+│       ├── README.md
+│       └── systemd
 ├── docker-compose.yml
 ├── images
-└── run.py
+│   └── preview.png
+├── init_migration.sh
+├── manage.py
+└── migrations
 ```
 
 ## How to run
@@ -30,7 +57,13 @@ pip3 install pipenv
 pipenv shell
 pipenv run pip install pip==18.0
 pipenv install
-python run.py
+python manage.py run
+```
+
+## how to test
+
+```
+python manage.py test
 ```
 
 ## Preview

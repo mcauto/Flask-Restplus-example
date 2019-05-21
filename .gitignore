@@ -1,4 +1,5 @@
-Pipfile.lock
 *.pyc
 .DS_Store
 .vscode
+.pytest_cache
+.env
