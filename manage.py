@@ -4,9 +4,10 @@ import unittest
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
 
-from app.api import blueprint
 from app import create_app
-from app.database import db
+
+from app.api import blueprint
+from app.repository.database import db
 from app.models.todo import Todo
 
 app = create_app('dev')

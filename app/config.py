@@ -38,6 +38,7 @@ class DevelopmentConfig(Config):
     
 class TestingConfig(Config):
     TESTING = True
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 config_by_name = dict(
     dev=DevelopmentConfig,

@@ -3,7 +3,7 @@ from marshmallow import Schema
 from marshmallow import fields
 from marshmallow import validate
 
-from app.database import db
+from app.repository.database import db
 
 class Todo(db.Model):
     __tablename__ = "Todo"
@@ -11,8 +11,14 @@ class Todo(db.Model):
     
     id = db.Column("id", db.Integer, primary_key=True)
     name = db.Column("name", db.String(250), nullable=False)
-    created = db.Column(db.TIMESTAMP, server_default=text("CURRENT_TIMESTAMP"), nullable=False)
     done = db.Column(db.Boolean, nullable=False)
+    created = db.Column(db.TIMESTAMP, server_default=text("CURRENT_TIMESTAMP"), nullable=False)
+    
+
+    def __init__(self, **kwargs):
+        self.name = kwargs['name']
+        self.done = kwargs['done']
+        super(Todo, self).__init__(**kwargs)
 
 class TodoSchema(Schema):
     id = fields.Integer(dump_only=True)

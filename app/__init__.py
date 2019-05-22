@@ -2,7 +2,7 @@ import os
 from flask import Flask
 
 from logging.config import dictConfig
-from app.database import db
+from app.repository.database import db
 from app.config import config_by_name
 import logging
 

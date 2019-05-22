@@ -6,6 +6,9 @@ name = "pypi"
 [dev-packages]
 pytest = "*"
 pytest-cov="*"
+alchemy-mock = "*"
+pysnooper = "*"
+mock = "*"
 
 [packages]
 marshmallow="*"
