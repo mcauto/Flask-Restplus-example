@@ -18,13 +18,13 @@ from app.constants import GET,POST,PATCH,DELETE
 from app.repository.database import db
 from app.models.todo import Todo, TodoSchema
 from app.services.todo_service import get_todos
+from app.services.todo_service import store_todos
 
 
 api = Namespace('Todo',description="Todo's REST API")
-schema = TodoSchema()
+
 todo_fields = api.model('Todo', {
 	'name': fields.String(required=True, description="Todo's name"),
-	'done': fields.Boolean(description="Todo's status"),
 })
 
 @api.route('/<int:todo_id>')
@@ -59,16 +59,18 @@ class TodoList(Resource):
 
 	post_parser = reqparse.RequestParser(bundle_errors=True)
 	post_parser.add_argument('name', required=True, type=str, help="todo's name",location='json')
+	
 
 	@api.doc(responses=GET, security='apikey', parser=parser)
 	def get(self):
 		args = self.parser.parse_args()
-		print(request.json)
-		print(args)
 		return get_todos(args['name'], args['done'])
 
 	@api.expect(todo_fields)
 	@api.doc(responses=POST, security='apikey', parser=post_parser)
 	def post(self):
 		args = self.post_parser.parse_args()
-		pass
+		todo = Todo()
+		todo.name = args['name']
+		# todo = schema.loads(jsonify(args))
+		return store_todos(todo)

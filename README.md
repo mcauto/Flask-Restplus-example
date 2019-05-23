@@ -1,5 +1,15 @@
 # Flask-RESTful-example 
 
+## Dependency
+
+1. pipenv
+
+```
+export PIPENV_VENV_IN_PROJECT=.
+```
+
+2. [direnv](https://github.com/direnv/direnv)
+
 ## Project Structure
 
 ```bash
