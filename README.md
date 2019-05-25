@@ -16,37 +16,7 @@ export PIPENV_VENV_IN_PROJECT=.
 
 I want to oriented clean architecture such as [go-clean-architecture](<https://github.com/bxcodec/go-clean-arch>)
 
-```mermaid
-graph TD;
-	subgraph app
-	Model-->Repository;
-	subgraph external applications
-	Micro-service-->Repository;
-	RDBMS-->Repository;
-	NoSQL-->Repository;
-	end
-	Model-->Service;
-	subgraph Data struct
-	Model
-	end
-	subgraph Business Logic
-	Service
-	end
-	Model-->API;
-	subgraph endpoint
-	RPC-->API;
-	REST-->API;
-	end
-	end
-	subgraph Confs
-	database
-	manager
-	webserver
-	wsgi
-	end
-	
-```
-
+![flow_chart](./images/flow_chart.png)
 ```bash
 Flask-RESTful-example
 ├── Pipfile

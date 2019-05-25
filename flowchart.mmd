@@ -1,0 +1,27 @@
+graph TD;
+	subgraph app
+	Model-->Repository;
+	subgraph external applications
+	Micro-service-->Repository;
+	RDBMS-->Repository;
+	NoSQL-->Repository;
+	end
+	Model-->Service;
+	subgraph Data struct
+	Model
+	end
+	subgraph Business Logic
+	Service
+	end
+	Model-->API;
+	subgraph endpoint
+	RPC-->API;
+	REST-->API;
+	end
+	end
+	subgraph Confs
+	database
+	manager
+	webserver
+	wsgi
+	end
