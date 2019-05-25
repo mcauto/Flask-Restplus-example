@@ -14,7 +14,13 @@ class Todo(db.Model):
     name = db.Column("name", db.String(250), nullable=False)
     done = db.Column(db.Boolean, nullable=False)
     created = db.Column(db.TIMESTAMP, server_default=text("CURRENT_TIMESTAMP"), nullable=False)
-    
+
+    def __init__(self, name, done, **kwargs):
+        self.name = name
+        self.done = done
+        super(Todo, self).__init__(**kwargs)
+
+
 
 class TodoSchema(Schema):
     id = fields.Integer(dump_only=True)

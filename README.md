@@ -1,4 +1,6 @@
-# Flask-RESTful-example 
+# Flask-Restplus-example 
+
+flask-restplus = flask restful + swagger
 
 ## Dependency
 
@@ -63,60 +65,6 @@ Flask-RESTful-example
 ├── docker-compose.yml
 ├── images
 │   └── preview.png
-└── manage.py
-
-16 directories, 34 files
-(Flask-RESTful-example)  mcauto@mcautoui-MBP  ~/Project/python/Flask-RESTful-example   develop ●✚  tree -I ".pytest_cache|*.pyc|migrations"
-.
-├── Pipfile
-├── Pipfile.lock
-├── README.md
-├── app
-│   ├── __init__.py
-│   ├── api
-│   │   ├── README.md
-│   │   ├── __init__.py
-│   │   ├── resources
-│   │   │   ├── README.md
-│   │   │   └── todo.py
-│   │   └── rpc
-│   │       ├── README.md
-│   │       └── __init__.py
-│   ├── config.py
-│   ├── constants.py
-│   ├── log
-│   │   ├── README.md
-│   │   └── app.log
-│   ├── models
-│   │   ├── README.md
-│   │   ├── __init__.py
-│   │   └── todo.py
-│   ├── repository
-│   │   ├── README.md
-│   │   ├── __init__.py
-│   │   └── database
-│   │       ├── README.md
-│   │       └── __init__.py
-│   ├── services
-│   │   ├── README.md
-│   │   ├── __init__.py
-│   │   └── todo_service.py
-│   └── tests
-│       ├── README.md
-│       ├── __init__.py
-│       ├── conftest.py
-│       └── test_todo_service.py
-├── confs
-│   ├── README.md
-│   ├── database
-│   │   ├── README.md
-│   │   └── mysql
-│   └── manager
-│       ├── README.md
-│       └── systemd
-├── docker-compose.yml
-├── images
-│   └── preview.png
 ├── manage.py
 └── migrations
 ```
@@ -132,7 +80,7 @@ pipenv install
 python manage.py run
 ```
 
-## how to test
+## How to test
 
 ```
 python manage.py test
@@ -141,3 +89,17 @@ python manage.py test
 ## Preview
 
 ![preview](./images/preview.png)
+
+## Todo
+
+- [ ] Unit Test
+  - [ ] database mocking sqlalchemy-mock
+- [ ] service layer refactoring
+- [ ] api authorization
+  - [ ] JWT
+  - [ ] basic auth
+- [ ] production configurations
+  - [ ] Nginx
+  - [ ] systemd
+  - [ ] gunicorn
+- [ ] add todo relationship(User, tag)

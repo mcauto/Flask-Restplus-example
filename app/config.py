@@ -34,11 +34,11 @@ class ProductionConfig(Config):
 class DevelopmentConfig(Config):
     DEBUG = True
     SQLALCHEMY_ECHO = True
-    SQLALCHEMY_TRACK_MODIFICATIONS = True
     
 class TestingConfig(Config):
+    DEBUG = True
+    SQLALCHEMY_ECHO = True
     TESTING = True
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 config_by_name = dict(
     dev=DevelopmentConfig,

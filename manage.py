@@ -11,6 +11,7 @@ from app.repository.database import db
 from app.models.todo import Todo
 
 app = create_app('dev')
+db.init_app(app)
 app.register_blueprint(blueprint)
 
 app.app_context().push()
