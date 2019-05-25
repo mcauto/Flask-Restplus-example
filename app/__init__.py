@@ -1,14 +1,17 @@
 import os
-from flask import Flask, current_app, send_file
-from app.api import books_api
+from flask import Flask
 
 from logging.config import dictConfig
-from app.books.models import db
-from app.config import Config
+from app.repository.database import db
+from app.config import config_by_name
 import logging
 
-def create_app(config_filename):
+def create_app(config_name):
+    app = Flask(__name__)
+    app.config.from_object(config_by_name[config_name])
+
     if 'TRAVIS_CI' not in os.environ:
+        # https://docs.python.org/3/library/logging.config.html#logging-config-dictschema
         dictConfig({
             'version':1,
             'formatters': {
@@ -19,24 +22,19 @@ def create_app(config_filename):
             'handlers': {
                 'file_handler': {
                     'class': 'logging.FileHandler',
-                    'filename': Config.LOG_PATH + '/app.log',
+                    'filename': app.config['LOG_PATH'] + '/app.log',
                     'formatter': 'default',
+                },
+                'console':{
+                    'class':'logging.StreamHandler',
+                    'formatter':'default',
+                    'stream':'ext://sys.stdout',
                 },
             },
             'root': {
                 'level': 'INFO',
-                'handlers': ['file_handler']
+                'handlers': ['file_handler', 'console']
             }
         })
-    
-    app = Flask(__name__)
-    app.config.from_object(config_filename)
-    db.init_app(app)
-    
-    app.register_blueprint(books_api, url_prefix='/api/books')
-
-
-    app.logger.info('>>> {}'.format(Config.FLASK_ENV))
+    app.logger.info('>>> {}'.format(config_name))
     return app
-
-

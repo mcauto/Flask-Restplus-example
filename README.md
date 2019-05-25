@@ -1,25 +1,105 @@
-# Flask-RESTful-example 
+# Flask-Restplus-example 
+
+flask-restplus = flask restful + swagger
+
+## Dependency
+
+1. pipenv
+
+```
+export PIPENV_VENV_IN_PROJECT=.
+```
+
+2. [direnv](https://github.com/direnv/direnv)
 
 ## Project Structure
 
+I want to oriented clean architecture such as [go-clean-architecture](<https://github.com/bxcodec/go-clean-arch>)
+
+```mermaid
+graph TD;
+	subgraph app
+	Model-->Repository;
+	subgraph external applications
+	Micro-service-->Repository;
+	RDBMS-->Repository;
+	NoSQL-->Repository;
+	end
+	Model-->Service;
+	subgraph Data struct
+	Model
+	end
+	subgraph Business Logic
+	Service
+	end
+	Model-->API;
+	subgraph endpoint
+	RPC-->API;
+	REST-->API;
+	end
+	end
+	subgraph Confs
+	database
+	manager
+	webserver
+	wsgi
+	end
+	
+```
+
 ```bash
 Flask-RESTful-example
-├── Pipfile 
+├── Pipfile
+├── Pipfile.lock
 ├── README.md
 ├── app
 │   ├── __init__.py
-│   ├── api 
+│   ├── api
+│   │   ├── README.md
 │   │   ├── __init__.py
-│   │   └── database.py # SQLAlchemey
-│   ├── books # API model example (such as Model)
+│   │   ├── resources
+│   │   │   ├── README.md
+│   │   │   └── todo.py
+│   │   └── rpc
+│   │       ├── README.md
+│   │       └── __init__.py
+│   ├── config.py
+│   ├── constants.py
+│   ├── log
+│   │   ├── README.md
+│   │   └── app.log
+│   ├── models
+│   │   ├── README.md
 │   │   ├── __init__.py
-│   │   ├── models.py # SQLAlchemy ORM 
-│   │   └── views.py # Flask Resource (such as Controller)
-│   ├── config.py # app config
-│   └── log # log folder
+│   │   └── todo.py
+│   ├── repository
+│   │   ├── README.md
+│   │   ├── __init__.py
+│   │   └── database
+│   │       ├── README.md
+│   │       └── __init__.py
+│   ├── services
+│   │   ├── README.md
+│   │   ├── __init__.py
+│   │   └── todo_service.py
+│   └── tests
+│       ├── README.md
+│       ├── __init__.py
+│       ├── conftest.py
+│       └── test_todo_service.py
+├── confs
+│   ├── README.md
+│   ├── database
+│   │   ├── README.md
+│   │   └── mysql
+│   └── manager
+│       ├── README.md
+│       └── systemd
 ├── docker-compose.yml
 ├── images
-└── run.py
+│   └── preview.png
+├── manage.py
+└── migrations
 ```
 
 ## How to run
@@ -30,9 +110,29 @@ pip3 install pipenv
 pipenv shell
 pipenv run pip install pip==18.0
 pipenv install
-python run.py
+python manage.py run
+```
+
+## How to test
+
+```
+python manage.py test
 ```
 
 ## Preview
 
 ![preview](./images/preview.png)
+
+## Todo
+
+- [ ] Unit Test
+  - [ ] database mocking sqlalchemy-mock
+- [ ] service layer refactoring
+- [ ] api authorization
+  - [ ] JWT
+  - [ ] basic auth
+- [ ] production configurations
+  - [ ] Nginx
+  - [ ] systemd
+  - [ ] gunicorn
+- [ ] add todo relationship(User, tag)
