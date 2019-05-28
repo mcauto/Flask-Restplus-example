@@ -4,7 +4,7 @@ from marshmallow import fields
 from marshmallow import validate
 from marshmallow import pre_load
 
-from app.repository.database import db
+from app import db
 
 class Todo(db.Model):
     __tablename__ = "Todo"
@@ -34,5 +34,5 @@ class TodoSchema(Schema):
 
     class Meta:
         type_ = 'todos'
-        fields =("name","done")
+        fields =("id","name","done","created")
         strict = True

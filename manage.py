@@ -5,12 +5,13 @@ from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
 
 from app import create_app
+from app import db
 
 from app.api import blueprint
-from app.repository.database import db
 from app.models.todo import Todo
 
 app = create_app('dev')
+
 db.init_app(app)
 app.register_blueprint(blueprint)
 

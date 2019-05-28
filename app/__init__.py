@@ -1,10 +1,13 @@
 import os
-from flask import Flask
-
-from logging.config import dictConfig
-from app.repository.database import db
-from app.config import config_by_name
 import logging
+from logging.config import dictConfig
+
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+
+from app.config import config_by_name
+
+db = SQLAlchemy()
 
 def create_app(config_name):
     app = Flask(__name__)
@@ -16,7 +19,7 @@ def create_app(config_name):
             'version':1,
             'formatters': {
                 'default': {
-                    'format': '%(asctime)s] [%(levelname)s] [%(module)s:%(lineno)d]\n %(message)s',
+                    'format': '[%(asctime)s] [%(levelname)s] [%(module)s:%(lineno)d]\n %(message)s',
                 },
             },
             'handlers': {

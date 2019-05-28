@@ -15,7 +15,7 @@ from marshmallow import ValidationError
 from app.constants import STATUS_CODE
 from app.constants import GET,POST,PATCH,DELETE
 
-from app.repository.database import db
+from app import db
 from app.models.todo import Todo, TodoSchema
 
 from app.services.todo_service import get_todos

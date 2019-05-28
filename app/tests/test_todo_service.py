@@ -5,7 +5,7 @@ import mock
 from alchemy_mock.mocking import UnifiedAlchemyMagicMock
 
 from app.services.todo_service import get_todos
-from app.repository.database import db
+from app import db
 from app.models.todo import Todo
 
 from app.constants import STATUS_CODE

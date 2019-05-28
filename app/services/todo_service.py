@@ -1,5 +1,7 @@
 from typing import List
 from typing import Dict
+from sqlalchemy.sql.elements import ColumnElement 
+
 
 from flask import Response
 from flask import make_response
@@ -9,15 +11,30 @@ from flask import jsonify
 from sqlalchemy import or_
 from sqlalchemy.exc import IntegrityError
 
-from app.repository.database import db
+from app import db
 from app.models.todo import Todo, TodoSchema
 from app.services import __default_response__
 
 from app.constants import STATUS_CODE
+from app.repository.database import TodoRepository
 
 """
 TODO: Service Class Refactoring
 """
+class TodoService:
+	def __init__(self, repository: TodoRepository):
+		self.repository = repository
+	def get_todos(self, filters: ColumnElement)->Response:
+		# filters = (
+		# 	(Todo.name == name) | (Todo.done == done)
+		# )
+		code, todos = self.repository.get_list(filters=filters)
+		schema = TodoSchema()
+		body = jsonify(schema.dump(todos, many=True).data)
+		response = make_response(body, code.value)
+		return response
+
+
 
 def get_todos(name: str, done: bool)-> Response:
 	body, status = __default_response__()
