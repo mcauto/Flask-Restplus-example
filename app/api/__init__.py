@@ -12,7 +12,7 @@ authorizations = {
     }
 }
 blueprint = Blueprint('api', __name__, 
-						  url_prefix='/api')
+						  url_prefix='/api/v1')
 rest_api = Api(blueprint, 
                 doc='/doc',
                 security=['apikey'], 
