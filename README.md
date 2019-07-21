@@ -80,7 +80,8 @@ pip3 install pipenv
 pipenv shell
 pipenv run pip install pip==18.0
 pipenv install
-python manage.py run
+python manage.py db upgrade # CREATE tables
+python manage.py run # run app
 ```
 
 ## How to test

@@ -19,7 +19,7 @@ from app.constants import STATUS_CODE
 TODO: Service Class Refactoring
 """
 
-def get_todos(name: str, done: bool)-> Response:
+def get_todos(name: str, done: bool)-> (Response):
 	body, status = __default_response__()
 	target = db.session.query(Todo)
 
@@ -43,7 +43,7 @@ def get_todos(name: str, done: bool)-> Response:
 	response = make_response(body, status_code)
 	return response
 
-def store_todos(todo: Todo)-> Response:
+def store_todos(todo: Todo)-> (Response):
 	body, status = __default_response__()
 	try:
 		# WARNING: https://docs.sqlalchemy.org/en/13/orm/persistence_techniques.html#bulk-operations
@@ -63,7 +63,7 @@ def store_todos(todo: Todo)-> Response:
 
 	return make_response(body, status_code)
 
-def patch_todos(todo: Todo, args: Dict) -> Response:
+def patch_todos(todo: Todo, args: Dict) -> (Response):
 	body, status = __default_response__()
 	try:
 		for key, value in args.items():
@@ -82,7 +82,7 @@ def patch_todos(todo: Todo, args: Dict) -> Response:
 
 	return make_response(body, status_code)
 
-def delete_todos(todo: Todo)-> Response:
+def delete_todos(todo: Todo)-> (Response):
 	body, status_code = __default_response__()
 	db.session.delete(todo)
 	db.session.commit()

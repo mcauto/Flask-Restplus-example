@@ -22,9 +22,9 @@ session = UnifiedAlchemyMagicMock(data=[
 	)
 ])
 
-class TestTodoService:
-	@pysnooper.snoop()
-	@mock.patch('app.repository.database.db.session', new=session)
-	def test_테스트(self, flask_app):
-		response = get_todos(name=mockTodo.name, done=mockTodo.done)
-		assert response.status_code == STATUS_CODE.OK.value
+# class TestTodoService:
+# 	@pysnooper.snoop()
+# 	@mock.patch('app.repository.database.db.session', new=session)
+# 	def test_테스트(self, flask_app):
+# 		response = get_todos(name=mockTodo.name, done=mockTodo.done)
+# 		assert response.status_code == STATUS_CODE.OK.value
